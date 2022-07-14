@@ -1,0 +1,61 @@
+#config eureka
+server:
+  address: 8087
+  servlet:
+    context-path: '/ead/course' #path definido no gateway
+    
+    
+    
+spring:
+  application:
+    name: ead-course-service
+  datasource:
+    url:  jdbc:postgresql://localhost:5432/ead-course
+    username: postgres
+    password: banco123
+  jpa:
+    hibernate:
+      ddl-auto: update
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+      jdbc:
+        lob.non-contextual-creation: true
+    properties:
+      hibernate:
+        show_sql: true
+ 
+
+logging:
+  level:
+    com.ead: TRACE
+    root: INFO
+    org.springframework.web: DEBUG
+    org.hibernate: INFO    
+    
+    
+    
+#config para montagem da url para comunucacão sincrona
+ead:
+  api:
+    url:
+      user: 'http://ead-authuser-service/ead-authuser'
+      
+      
+
+eureka:
+  client:
+    service-url: 
+     defaultZone: 'http://ead-user-service'  #vc passa o id do servico
+   #   defaultZone: 'http://localhost:8761/eureka' ## usaddo para comuncaao sincron quando vc monta a url
+  instance:
+    hostname: localhost 
+
+
+
+
+
+
+
+## config de banco de dados esta no caiptulo Mapear Entidades , criar repository e services
+
+
+ 
